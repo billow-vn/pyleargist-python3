@@ -680,7 +680,7 @@ static void color_down_N(float *res, color_image_t *src, int N, int c)
             float denom = (float)(ny[l+1]-ny[l])*(nx[k+1]-nx[k]);
 
             res[k*N+l] = mean / denom;
-            assert(finite(res[k*N+l]));
+            assert(isfinite(res[k*N+l]));
         }
     }
 
@@ -913,7 +913,7 @@ float *bw_gist_scaletab(image_t *src, int w, int n_scale, const int *n_orientati
 
     for(i = 0; i < tot_oris*w*w; i++)
     {
-        if(!finite(g[i]))
+        if(!isfinite(g[i]))
         {
             fprintf(stderr, "Error: bw_gist_scaletab() - descriptor not valid (nan or inf)\n");
             free(g); g=NULL;
@@ -964,7 +964,7 @@ float *color_gist_scaletab(color_image_t *src, int w, int n_scale, const int *n_
     
     for(i = 0; i < tot_oris*w*w*3; i++)
     {
-        if(!finite(g[i]))
+        if(!isfinite(g[i]))
         {
             fprintf(stderr, "Error: color_gist_scaletab() - descriptor not valid (nan or inf)\n");
             free(g); g=NULL;
